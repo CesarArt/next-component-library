@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-
+import { Toaster } from "sonner";
+import { Header } from "@/components/layout/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,6 +18,8 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <Toaster position="top-center" richColors closeButton/>
+        <Header />
         {children}
       </body>
     </html>
