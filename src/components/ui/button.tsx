@@ -13,7 +13,7 @@ const IconRenderer: React.FC<{ iconName: keyof typeof lucideIcons, size: number 
 };
 
 const buttonVariants = cva(
-    "flex gap-2 rounded-xl p-1.5 px-4 items-center hover:opacity-60 btn-hover shadow-md shadow-slate-500/50 dark:shadow-none text-sm",
+    "flex gap-2 rounded-xl p-2 px-4 items-center hover:opacity-60 btn-hover shadow-md shadow-slate-500/50 dark:shadow-none text-sm",
     {
         variants: {
             variant: {
