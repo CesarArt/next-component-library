@@ -1,6 +1,20 @@
+'use client'
+
+import { trackEvent } from "@/app/api/tracking/trackEvent";
 import { Button, HeadBar } from "@/components";
+import { ComponentEnum, trackEventReq } from "@/utils/types/trackEvent";
 
 export default function ShowcaseButtonsPage() {
+
+    const registerTrack = async (variant: string, action: string) =>{
+        const trackData: trackEventReq ={
+            component: ComponentEnum.Button,
+            variant: variant,
+            action: action
+        }
+        await trackEvent(trackData)
+    }
+
     return (
         <div className="w-full h-full md:h-screen bg-background">
             <HeadBar title="Buttons"/>
@@ -15,9 +29,9 @@ export default function ShowcaseButtonsPage() {
                         .
                     </span>
                     <div className="flex gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Button variant="primary">Primary</Button>
-                        <Button variant="secondary">Secondary</Button>
-                        <Button variant="danger">Danger</Button>
+                        <Button variant="primary" onClick={() => registerTrack("primary","click")} >Primary</Button>
+                        <Button variant="secondary" onClick={() => registerTrack("secondary","click")}>Secondary</Button>
+                        <Button variant="danger" onClick={() => registerTrack("danger","click")}>Danger</Button>
                     </div>
                 </div>
                 <div>
@@ -29,8 +43,8 @@ export default function ShowcaseButtonsPage() {
                         .
                     </span>
                     <div className="flex gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Button state={"default"}>Default</Button>
-                        <Button state={"loading"} >Loading...</Button>
+                        <Button state={"default"} onClick={() => registerTrack("default","click")}>Default</Button>
+                        <Button state={"loading"}>Loading...</Button>
                         <Button state={"disabled"}>Disabled</Button>
                     </div>
                 </div>
@@ -45,10 +59,10 @@ export default function ShowcaseButtonsPage() {
                         </code>
                     </span>
                     <div className="flex gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Button variant="primary" state={"default"} iconName="BellOff" iconSize={16} iconRight>Left Icon</Button>
+                        <Button variant="primary" state={"default"} iconName="BellOff" iconSize={16} onClick={() => registerTrack("iconLeft","click")}>Right Icon</Button>
                     </div>
                     <div className="flex gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Button variant="primary" state={"default"} iconName="BellOff" iconSize={16}>Right Icon</Button>
+                        <Button variant="primary" state={"default"} iconName="BellOff" iconSize={16} iconRight onClick={() => registerTrack("iconRight","click")}>Left Icon</Button>
                     </div>
                 </div>
             </div>
