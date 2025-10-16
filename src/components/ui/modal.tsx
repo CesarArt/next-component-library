@@ -10,7 +10,7 @@ interface ModalHeaderProps {
 
 const ModalHeader = ({ children }: ModalHeaderProps) => {
     return (
-        <DialogTitle as="h3" className="text-xl font-bold text-gray-900 dark:text-white px-4">
+        <DialogTitle as="h3" className="text-xl font-bold text-title px-4">
             {children}
         </DialogTitle>
     );
@@ -19,7 +19,7 @@ const ModalHeader = ({ children }: ModalHeaderProps) => {
 const ModalBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
-            className={cn("text-sm/6 font-normal text-gray-700 dark:text-gray-400 px-4 pb-2", className)}
+            className={cn("text-sm/6 font-normal text-desc px-4 pb-2", className)}
             {...props}
         />
     )
@@ -28,14 +28,14 @@ const ModalBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>
 const ModalFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
-            className={cn("bg-slate-200 p-2 rounded-b-xl", className)}
+            className={cn("flex bg-slate-600 p-2 text-muted rounded-b-xl justify-end", className)}
             {...props}
         />
     )
 }
 
 const ModalVariants = cva(
-    "w-full rounded-xl bg-white backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(94%)] data-closed:opacity-0",
+    "bg-card w-full rounded-xl backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(94%)] data-closed:opacity-0",
     {
         variants: {
             size: {
@@ -70,7 +70,7 @@ const Modal = ({ open, setOpen, className, size, children }: ModalProps) => {
                         className={cn(ModalVariants({ size, className }))}
                     >
                         <div className="flex w-full justify-end pt-2 pr-2">
-                            <CircleX onClick={setOpen} size={18} className="btn-hover cursor-pointer"/>
+                            <CircleX onClick={setOpen} size={18} className="btn-hover cursor-pointer text-foreground-secondary"/>
                         </div>
                         {children}
                     </DialogPanel>
