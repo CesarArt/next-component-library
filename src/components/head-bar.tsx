@@ -12,9 +12,9 @@ export const HeadBar = ({ title }: HeadBarProps) => {
        router.back()
     }
     return (
-        <div className="flex gap-2 w-full bg-slate-100 p-2">
-            <Button variant="secondary" iconName="ArrowLeft" className="p-1! bg-transparent! rounded-full ring-0" onClick={back}></Button>
-            <h4 className="text-3xl text-slate-700 text-center w-full pe-8">{title}</h4>
+        <div className="flex gap-2 w-full p-2 items-center">
+            <Button variant="secondary" iconName="ArrowLeft" iconSize={25} className="p-2.5! rounded-full! ring-0 w-fit!" onClick={back}></Button>
+            <h4 className="title-text text-center w-full pe-8">{title}</h4>
         </div>
     )
 }
