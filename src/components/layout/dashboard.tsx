@@ -8,6 +8,7 @@ import { dataChart } from "@/utils/types/charts";
 import { findMostFrequent, getColorGradientByPercentage, groupFavoritesByComponent } from "@/utils/functions/chart";
 import { colorByPercentageTop } from "@/lib/utils";
 import { TreemapChart } from "../ui/chart/tree-map-chart";
+import DownloadExportButton from "../download-export-button";
 
 export default function Dashboard() {
     const [stats, setStats] = useState<componentsStats>()
@@ -24,7 +25,7 @@ export default function Dashboard() {
         const totalInteractions = stats && stats.stats ? stats?.stats.reduce((v, c) => v + c.count, 0) : 0
         const totalComponents = stats?.stats?.length ?? 0
         const totalFavorites = stats && stats.stats ? stats?.myFavorites?.length : 0
-        const componentMoreInteraction = stats?.stats?.sort((a, b) => a.count - a.count)[0]
+        const componentMoreInteraction = stats?.stats?.sort((a, b) => b.count - a.count)[0]
         const interactionsChart: dataChart[] = stats?.stats?.map((st) => {
             const maxValue = Math.max(...stats?.stats.map((d) => d.count))
             const color = getColorGradientByPercentage(st.count, maxValue, colorByPercentageTop)
@@ -47,9 +48,15 @@ export default function Dashboard() {
     return (
         <section className="relative flex flex-col gap-2 h-full w-full p-4">
             <div className="space-y-1 px-4">
-                <h1 className="title-text">
-                    Dashboard
-                </h1>
+                <div className="flex justify-between">
+                    <h1 className="title-text">
+                        Dashboard
+                    </h1>
+                    <div className="flex gap-2">
+                        <DownloadExportButton />
+                        <DownloadExportButton format="json" />
+                    </div>
+                </div>
                 <h2 className="subtitle-text">
                     Overview of the UI Component Library
                 </h2>
