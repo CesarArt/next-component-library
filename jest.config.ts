@@ -149,6 +149,15 @@ const config: Config = {
 
   // The test environment that will be used for testing
   testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  transform: {
+    "^.+\\.(t|j)sx?$": ["babel-jest", { configFile: './jest-babel.config.js' }],
+  },
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^next/(.*)$": "<rootDir>/test-mocks/next/$1",
+    "^next/image$": "<rootDir>/test-mocks/next/image.tsx"
+  },
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

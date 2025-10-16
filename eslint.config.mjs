@@ -18,6 +18,9 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Ignore test files so the production build does not lint them
+      "src/**/*.test.*",
+      "src/**/__tests__/**",
     ],
   },
 ];

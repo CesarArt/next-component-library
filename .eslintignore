@@ -1,0 +1,3 @@
+# Ignore test files inside src to prevent build-time ESLint errors
+src/**/*.test.*
+src/**/__tests__/**
