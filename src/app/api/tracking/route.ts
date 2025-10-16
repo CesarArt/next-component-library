@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { BACKEND_URL } from '@/lib/config';
 
 export async function POST(req: Request) {
   try {
@@ -7,8 +8,8 @@ export async function POST(req: Request) {
     const token = cookieStore.get("token")?.value;
     const body = await req.json();
 
-    // Request to the real backend
-    const backendRes = await fetch("http://localhost:4000/api/components/track", {
+  // Request to the real backend
+  const backendRes = await fetch(`${BACKEND_URL}/api/components/track`, {
       method: "POST",
       headers: { "Content-Type": "application/json",
         Authorization: `Bearer ${token}`

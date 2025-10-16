@@ -1,13 +1,14 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { BACKEND_URL } from '@/lib/config';
 
 export async function GET() {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
-    // Request to the real backend
-    const backendRes = await fetch("http://localhost:4000/api/components/stats", {
+  // Request to the real backend
+  const backendRes = await fetch(`${BACKEND_URL}/api/components/stats`, {
       method: "GET",
       headers: { "Content-Type": "application/json",
         Authorization: `Bearer ${token}`
