@@ -3,6 +3,7 @@ import { Card, CardBody, CardFooter, CardHeader, CardMedia, HeadBar } from "@/co
 import image from "@/assets/images/star-trails.jpg"
 import { ShowCaseInputCard } from "@/components/showcase-input-card";
 import { ComponentEnum, trackEventReq } from "@/utils/types/trackEvent";
+import { trackEvent } from "@/app/api/tracking/trackEvent";
 
 export default function ShowcaseCardsPage() {
 
@@ -20,8 +21,7 @@ export default function ShowcaseCardsPage() {
             variant: variant,
             action: action
         }
-        console.log("track:", trackData)
-        // await trackEvent(trackData)
+        await trackEvent(trackData)
     }
     return (
         <div className="w-full h-full md:h-screen bg-background">

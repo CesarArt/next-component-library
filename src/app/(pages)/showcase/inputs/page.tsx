@@ -1,4 +1,5 @@
 'use client'
+import { trackEvent } from "@/app/api/tracking/trackEvent";
 import { HeadBar } from "@/components";
 import { ShowCaseInputCard } from "@/components/showcase-input-card";
 import { Input } from "@/components/ui/input";
@@ -22,8 +23,7 @@ export default function ShowcaseInputsPage() {
             variant: variant,
             action: action
         }
-        console.log("track:", trackData)
-        // await trackEvent(trackData)
+        await trackEvent(trackData)
     }
     return (
         <div className="w-full h-full md:h-screen bg-background">

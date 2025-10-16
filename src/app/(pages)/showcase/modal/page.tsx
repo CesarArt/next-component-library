@@ -1,4 +1,5 @@
 "use client"
+import { trackEvent } from "@/app/api/tracking/trackEvent";
 import { Button, HeadBar } from "@/components";
 import { ShowCaseInputCard } from "@/components/showcase-input-card";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/ui/modal";
@@ -33,8 +34,7 @@ export default function ShowcaseModalPage() {
             variant: variant,
             action: action
         }
-        console.log("track:", trackData)
-        // await trackEvent(trackData)
+        await trackEvent(trackData)
     }
 
     return (
