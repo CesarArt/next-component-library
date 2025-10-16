@@ -12,13 +12,13 @@ export default function ShowcasePage() {
         { href: "/modal", title: "Modals", icon: <FileAxis3d />, label: "Explore the use of personalized modals" },
     ];
     return (
-        <div className="container mx-auto px-2 py-4 w-full h-full bg-background">
+        <div className="container mx-auto px-2 py-4 w-full h-full">
             <section className="relative flex flex-col gap-2 h-full w-full p-4">
                 <div className="space-y-1 px-4">
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="title-text">
                         Components Show Case
                     </h1>
-                    <h2 className="text-xl text-muted">
+                    <h2 className="text-subtitle">
                         Explore our component library
                     </h2>
                 </div>

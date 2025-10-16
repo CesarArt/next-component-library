@@ -10,6 +10,9 @@
   --gradient-background: linear-gradient(#b2e0ff, #ffffff);
   --color-card: #ffffff;
   --code: #f1f3f8;
+  --card-bg-op1: #085097;
+  --card-bg-op2: #af4b0c;
+  --card-bg-op3: #a0105f;
   /* Text */
   --code-text: #b93993;
   --title: #000000;
@@ -22,29 +25,31 @@
   --spacing-lg: 2rem;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
-  /* Colors */
-  --color-primary: #00568f;
-  --color-secondary: #ffffff;
-  --color-foreground: #ffffff;
-  --color-foreground-secondary: #000000;
-  --color-border: #dddddd;
-  /* Background */
-  --color-background: #252525;
-  --gradient-background: linear-gradient(#b2e0ff, #ffffff);
-  --color-card: #ffffff;
-  --code: #f1f3f8;
-  /* Text */
-  --code-text: #b93993;
-  --title: #ffffff;
-  --subtitle: #b9b9b9;
-  --desc: #dcdcdc;
-  --muted: #ffffff;
-  --link: #078fde;
+    /* Colors */
+    --color-primary: #00568f;
+    --color-secondary: #ffffff;
+    --color-foreground: #ffffff;
+    --color-foreground-secondary: #ffffff;
+    --color-border: #212121;
+    /* Background */
+    --color-background: #101113;
+    --gradient-background: linear-gradient(#4d4d4d, #1a1a1a);
+    --color-card: #292929;
+    --code: #f1f3f8;
+    --card-bg-op1: #085097;
+    --card-bg-op2: #af4b0c;
+    --card-bg-op3: #a0105f;
+    /* Text */
+    --code-text: #b93993;
+    --title: #ffffff;
+    --subtitle: #b9b9b9;
+    --desc: #e7e7e7;
+    --muted: #ffffff;
+    --link: #078fde;
 
-  /* Spacing */
-  --spacing-lg: 2rem;
+    /* Spacing */
+    --spacing-lg: 2rem;
   }
 }

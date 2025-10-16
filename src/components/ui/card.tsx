@@ -23,7 +23,7 @@ const CardMedia = ({ src, alt, className }: CardMediaProps) => {
 }
 const CardHeader = ({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <div className={cn("mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white px-4", className)} {...props}>
+        <div className={cn("mb-1 text-xl font-bold tracking-tight text-title px-4", className)} {...props}>
             {children}
         </div>
     );
@@ -32,7 +32,7 @@ const CardHeader = ({ className, children, ...props }: React.HTMLAttributes<HTML
 const CardBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
-            className={cn("font-normal text-gray-700 dark:text-gray-400 text-sm px-4 py-2 pb-4", className)}
+            className={cn("font-normal text-desc text-sm px-4 py-2 pb-4", className)}
             {...props}
         />
     )
@@ -41,14 +41,14 @@ const CardBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 const CardFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
-            className={cn("inline-flex items-center py-2 text-sm font-medium text-center text-black px-4", className)}
+            className={cn("inline-flex items-center py-2 text-sm font-medium text-center text-muted px-4", className)}
             {...props}
         />
     )
 }
 
 const cardVariants = cva(
-    "bg-white max-w-xl border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-md  hover:shadow-xl/20 transition-all duration-300 group",
+    "bg-card max-w-xl border border-gray-200 rounded-2xl border-border shadow-md hover:shadow-xl/20 transition-all duration-300 group",
     {
         variants: {
             variant: {

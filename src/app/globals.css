@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import './../styles/design-tokens.css';
+@import "./../styles/design-tokens.css";
 
 @theme {
   --color-primary: var(--color-primary);
@@ -7,10 +7,13 @@
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
   --color-foreground-secondary: var(--color-foreground-secondary);
-  --color-code: var(--code);
   --color-code-text: var(--code-text);
   --color-border: var(--color-border);
   --color-card: var(--color-card);
+  --color-card-bg-op1: var(--card-bg-op1);
+  --color-card-bg-op2: var(--card-bg-op2);
+  --color-card-bg-op3: var(--card-bg-op3);
+  --color-code: var(--code);
   --color-title: var(--title);
   --color-subtitle: var(--subtitle);
   --color-desc: var(--desc);
@@ -32,26 +35,29 @@ body {
 }
 
 .btn-hover {
-  @apply  hover:opacity-80 transform transition-transform duration-300 hover:scale-105 hover:shadow-md;
+  @apply hover:opacity-80 transform transition-transform duration-300 hover:scale-105 hover:shadow-md;
 }
 .btn_cst {
-  @apply  rounded-xl p-2 px-4 text-sm items-center shadow-md shadow-slate-500/50 dark:shadow-none;
+  @apply rounded-xl p-2 px-4 text-sm items-center shadow-md shadow-slate-500/50 dark:shadow-none;
 }
 .code {
-  @apply  bg-code text-code-text font-mono font-light px-2 py-1.5 rounded-lg text-base;
+  @apply bg-code text-code-text font-mono font-light px-2 py-1.5 rounded-lg text-base;
 }
 .title-text {
-  @apply  text-4xl md:text-5xl text-title font-bold;
+  @apply text-4xl md:text-5xl text-title font-bold;
 }
 .subtitle-text {
-  @apply  text-3xl text-subtitle font-normal;
+  @apply text-3xl text-subtitle font-normal;
 }
 .desc-text {
-  @apply  text-base text-desc font-medium;
+  @apply text-base text-desc font-medium;
 }
 .muted-text {
-  @apply  text-base text-muted font-light;
+  @apply text-base text-muted font-light;
 }
 .link-text {
-  @apply hover:underline text-link
+  @apply hover:underline text-link;
+}
+.text-white-force {
+  @apply text-white!;
 }

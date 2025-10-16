@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="relative divide-y-1 divide-gray-500">
+    <div className="relative">
       <section className="relative h-full w-full p-3">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-1 lg:gap-x-12 xl:gap-x-16">
             <div className="flex flex-col justify-center space-y-6 text-center">
               <div className="space-y-4">
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-sky-950 to-violet-300">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline bg-clip-text text-transparent bg-gradient-to-r from-rose-950 to-violet-400">
                   UI component library, designed for your projects.
                 </h1>
                 <h2 className="mx-auto max-w-3xl text-muted md:text-xl">
