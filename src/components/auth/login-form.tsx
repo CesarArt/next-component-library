@@ -7,7 +7,6 @@ import { Button, Input } from "@/components";
 import { toast } from "sonner";
 import { loginUserReq } from "@/utils/types/user";
 import { logIn } from "@/app/api/auth/user";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -17,7 +16,6 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
-    const router = useRouter();
     const [errorCredential, setErroCredential] = useState(false)
     const Form = FormProvider
     const form = useForm<z.infer<typeof formSchema>>({
@@ -37,7 +35,7 @@ export function LoginForm() {
         console.log("data: ",data)
         if(data?.status === 200){
             setErroCredential(false)
-            router.push("/")
+            window.location.href = "/";
         }else{
             setErroCredential(true)
             toast.error(data?.message);
@@ -54,7 +52,7 @@ export function LoginForm() {
                         control={form.control}
                         rules={{ required: true, maxLength: 18 }}
                         render={({ field: { onChange } }) =>
-                            <Input type="email" state={form.formState.submitCount === 0 ? "default" : form.formState.errors.email || errorCredential ? "error" : "success"} placeHolder={"m@example.com"} label={"E-mail"} onChange={onChange}/>
+                            <Input type="email" state={form.formState.submitCount === 0 ? "default" : form.formState.errors.email || errorCredential ? "error" : "success"} placeHolder={"m@example.com"} label={"E-mail"} onChange={onChange} />
                         }
                     />
                     {form.formState.errors.email &&
@@ -68,7 +66,7 @@ export function LoginForm() {
                         control={form.control}
                         rules={{ required: true, maxLength: 18 }}
                         render={({ field: { onChange } }) =>
-                            <Input type="password"  state={form.formState.submitCount === 0 ? "default" : form.formState.errors.password || errorCredential ? "error" : "success"} placeHolder={"****"} label={"Password"} maxLength={16} onChange={onChange}/>
+                            <Input type="password" state={form.formState.submitCount === 0 ? "default" : form.formState.errors.password || errorCredential ? "error" : "success"} placeHolder={"****"} label={"Password"} maxLength={16} onChange={onChange} />
                         }
                     />
                     {form.formState.errors.password &&
