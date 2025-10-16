@@ -19,7 +19,7 @@ const buttonVariants = cva(
             variant: {
                 primary: "bg-primary text-foreground",
                 secondary:
-                    "bg-secondary text-foreground-secondary ring-1 ring-border",
+                    "bg-secondary text-primary ring-1 ring-border",
                 danger:
                     "bg-rose-500 text-foreground",
             },
