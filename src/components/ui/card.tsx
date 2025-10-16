@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { cva, VariantProps } from "class-variance-authority";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
-interface CardMediaProps {
+export interface CardMediaProps {
     src: string | StaticImport;
     alt?: string;
     className?: string
@@ -17,7 +17,7 @@ const CardMedia = ({ src, alt, className }: CardMediaProps) => {
             src={src}
             alt={alt ?? ""}
             priority
-            className={cn("aspect-[3/2] object-cover rounded-t-lg", className)}
+            className={cn("aspect-[3/2] object-cover rounded-t-lg p-2", className)}
         />
     );
 }
@@ -29,17 +29,14 @@ const CardHeader = ({ className, children, ...props }: React.HTMLAttributes<HTML
     );
 }
 
-
-
 const CardBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
         <div
-            className={cn("font-normal text-gray-700 dark:text-gray-400 text-sm px-4", className)}
+            className={cn("font-normal text-gray-700 dark:text-gray-400 text-sm px-4 py-2 pb-4", className)}
             {...props}
         />
     )
 }
-
 
 const CardFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
@@ -51,7 +48,7 @@ const CardFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement
 }
 
 const cardVariants = cva(
-    "bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-xl/20",
+    "bg-white max-w-xl border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-md  hover:shadow-xl/20 transition-all duration-300 group",
     {
         variants: {
             variant: {
@@ -65,6 +62,10 @@ const cardVariants = cva(
                 double:
                     "border-4 border-double",
             },
+            scale:{
+                default: "scale-none",
+                scale: "scale-100 hover:scale-102"
+            }
         },
         defaultVariants: {
             variant: "default",
@@ -72,13 +73,13 @@ const cardVariants = cva(
     }
 )
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {
     className?: string
 }
-const Card = ({ className, variant, children, ...props }: CardProps) => {
+const Card = ({ className, variant, scale, children, ...props }: CardProps) => {
     return (
         <div
-            className={cn(cardVariants({ variant, className }))}
+            className={cn(cardVariants({ variant, scale, className }))}
             {...props}
         >
             {children}

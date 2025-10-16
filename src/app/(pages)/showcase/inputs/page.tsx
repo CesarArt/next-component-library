@@ -1,46 +1,68 @@
+'use client'
 import { HeadBar } from "@/components";
+import { ShowCaseInputCard } from "@/components/showcase-input-card";
 import { Input } from "@/components/ui/input";
+import { ComponentEnum, trackEventReq } from "@/utils/types/trackEvent";
 
 export default function ShowcaseInputsPage() {
+    const inputsTypeOptions: { name: string, type: "text" | "email" | "password", label: string, placeHolder: string, title: string, description: string }[] = [
+        { name: "text", type: "text", placeHolder: "Enter your username", label: "Name", title: "Text", description: "This input of type text" },
+        { name: "email", type: "email", placeHolder: "m@example.com", label: "Email", title: "Email", description: "This input of type email" },
+        { name: "password", type: "password", placeHolder: "Enter your password", label: "Password", title: "Password", description: "This input of type password" }
+    ]
+    const inputsStatesOptions: { name: string, type: "text" | "email" | "password", state: "default" | "success" | "error", label: string, placeHolder: string, title: string, description: string }[] = [
+        { name: "default", type: "text", state: "default", placeHolder: "m@example.com", label: "Email", title: "Default", description: "This is the default state of the input" },
+        { name: "success", type: "email", state: "success", placeHolder: "m@example.com", label: "Email", title: "Success", description: "This is the state when the input is in success state" },
+        { name: "error", type: "password", state: "error", placeHolder: "m@example.com", label: "Email", title: "Error", description: "This is the state when the input is in error state" }
+    ]
+
+    const registerTrack = async (variant: string, action: string) => {
+        const trackData: trackEventReq = {
+            component: ComponentEnum.Input,
+            variant: variant,
+            action: action
+        }
+        console.log("track:", trackData)
+        // await trackEvent(trackData)
+    }
     return (
         <div className="w-full h-full md:h-screen bg-background">
-            <HeadBar title="Inputs"/>
-
-            <div className="flex flex-col">
-                <div className="">
-                    <h3 className="text-5xl text-slate-500">Variant button</h3>
-                    <span className="text-xl text-slate-400">The Button comes with three variants:
-                        <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-                            primary, secondary, and danger
-                        </code>
-                        .
-                    </span>
-                    <div className="flex flex-col md:flex-row gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Input type="text" placeHolder={"Name"} label={"algo"}></Input>
-                        <Input type="email" placeHolder={"E-mail"} label={"algo"}></Input>
-                        <Input type="password" placeHolder={"password"} label={"algo"}></Input>
+            <HeadBar title="Inputs" />
+            <div className="flex flex-col items-center gap-4 px-4 pb-4">
+                <section className="flex flex-col">
+                    <h2 className="title-text text-4xl!">Types</h2>
+                    <h3 className="subtitle-text">The different types of inputs</h3>
+                    <div className="grid grid-cols-1 gap-2">
+                        {inputsTypeOptions.map((v) => (
+                            <ShowCaseInputCard key={v.name} title={v.title} description={v.description}
+                                registerTrack={(action) => registerTrack(v.name, action)}
+                            >
+                                <Input type={v.type} placeHolder={v.placeHolder} label={v.label} onBlur={() => registerTrack(v.name, "focus")}></Input>
+                            </ShowCaseInputCard>
+                        ))}
                     </div>
-                </div>
-                <div>
-                    <h3 className="text-5xl text-slate-500">State</h3>
-                    <span className="text-xl text-slate-400">The Button comes with three variants:
-                        <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-                            Default, error, and success
-                        </code>
-                        .
-                    </span>
-                    <div className="flex flex-col md:flex-row  gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Input type="text" placeHolder={"Name"} label={"Default"}></Input>
-                        <Input type="text" state="error" placeHolder={"Error"} label={"algo"}></Input>
-                        <Input type="text"  state="success" placeHolder={"Success"} label={"algo"}></Input>
+                </section>
+                <section className="flex flex-col">
+                    <h2 className="title-text text-4xl!">States</h2>
+                    <h3 className="subtitle-text">The different input states</h3>
+                    <div className="grid grid-cols-1 gap-2">
+                        {inputsStatesOptions.map((v) => (
+                            <ShowCaseInputCard key={v.name} title={v.title} description={v.description}
+                                registerTrack={(action) => registerTrack(v.name, action)}
+                            >
+                                <Input type={v.type} state={v.state} placeHolder={v.placeHolder} label={v.label} onBlur={() => registerTrack(v.name, "focus")}></Input>
+                            </ShowCaseInputCard>
+                        ))}
                     </div>
-                </div>
-                <div>
-                    <h3 className="text-5xl text-slate-500">Disabled</h3>
-                    <div className="flex flex-col md:flex-row  gap-2 w-full rounded-xl justify-center p-4 ring-1 ring-indigo-100">
-                        <Input type="text" placeHolder={"Name"} label={"Default"} disabled></Input>
-                    </div>
-                </div>
+                </section>
+                <section className="flex flex-col">
+                    <h2 className="title-text text-4xl!">Disabled</h2>
+                    <ShowCaseInputCard key={"disabled"} title={"Disabled"} description={"This is a disabled input"}
+                        registerTrack={(action) => registerTrack("disabled", action)}
+                    >
+                        <Input type="text" placeHolder={"Enter your name"} label={"Name"} disabled></Input>
+                    </ShowCaseInputCard>
+                </section>
             </div>
         </div>
     );

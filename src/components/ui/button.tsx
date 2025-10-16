@@ -13,15 +13,15 @@ const IconRenderer: React.FC<{ iconName: keyof typeof lucideIcons, size: number 
 };
 
 const buttonVariants = cva(
-    "flex gap-2 rounded-xl p-2 px-4 items-center hover:opacity-60 btn-hover shadow-md shadow-slate-500/50 dark:shadow-none text-sm",
+    "flex gap-2 btn_cst btn-hover",
     {
         variants: {
             variant: {
-                primary: "bg-primary text-text-primary",
-                danger:
-                    "bg-rose-500 text-white",
+                primary: "bg-primary text-foreground",
                 secondary:
-                    "bg-secondary text-text-secondary ring-1 ring-primary",
+                    "bg-secondary text-foreground-secondary ring-1 ring-border",
+                danger:
+                    "bg-rose-500 text-foreground",
             },
             state: {
                 default: "cursor-pointer",
@@ -40,7 +40,7 @@ const buttonVariants = cva(
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     iconName?: keyof typeof lucideIcons;
     iconSize?: number
-    iconRight?: true
+    iconRight?: boolean
 }
 
 export const Button = ({ className, children, iconName, iconSize, iconRight, variant, state, ...props }: ButtonProps) => {
