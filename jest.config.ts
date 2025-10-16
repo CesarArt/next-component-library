@@ -149,6 +149,8 @@ const config: Config = {
 
   // The test environment that will be used for testing
   testEnvironment: "jsdom",
+  // setupFiles run before the test framework is installed — useful for early mocks
+  setupFiles: ["<rootDir>/jest.setup.mock.ts"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {
     "^.+\\.(t|j)sx?$": ["babel-jest", { configFile: './jest-babel.config.js' }],
