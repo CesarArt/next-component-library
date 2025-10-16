@@ -6,7 +6,6 @@ export async function POST(req: Request) {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
     const body = await req.json();
-    console.log("token: ", token)
 
     // Request to the real backend
     const backendRes = await fetch("http://localhost:4000/api/components/track", {

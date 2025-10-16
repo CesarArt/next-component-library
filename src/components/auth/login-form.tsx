@@ -32,7 +32,6 @@ export function LoginForm() {
             password: values.password
         }
         const data = await logIn(registerData)
-        console.log("data: ",data)
         if(data?.status === 200){
             setErroCredential(false)
             window.location.href = "/";
