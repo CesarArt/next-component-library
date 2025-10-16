@@ -1,3 +1,4 @@
+import { componentsStats } from "@/utils/types/stats";
 import { trackEventReq, trackEventRes } from "@/utils/types/trackEvent";
 
 export const trackEvent = async (dataTrack:trackEventReq) => {
@@ -9,6 +10,19 @@ export const trackEvent = async (dataTrack:trackEventReq) => {
       body: JSON.stringify({ component, variant, action }),
     });
     const data :trackEventRes= await response.json();
+    return data
+  } catch (err) {
+    console.error("Error tracking event:", err);
+    return null
+  }
+};
+export const getStats = async () => {
+  try {
+    const response = await fetch("/api/stats", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data :componentsStats= await response.json();
     return data
   } catch (err) {
     console.error("Error tracking event:", err);

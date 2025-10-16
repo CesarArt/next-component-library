@@ -12,7 +12,8 @@ export interface trackEventReq {
     variant: string,
     action: string
 }
-export interface trackEventRes extends mongoCollection, Omit<trackEventReq, 'component'>{
-    component: string,
+export interface trackEventRes extends mongoCollection, trackEventReq{
+    user:string
+    username:string
 }
 
