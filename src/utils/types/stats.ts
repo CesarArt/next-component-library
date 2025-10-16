@@ -12,3 +12,8 @@ export interface countStat{
 
 }
 export interface favoriteComponents extends trackEventReq, mongoCollection {}
+
+export interface GroupedComponent {
+  component: string;
+  variants: { [key: string]: number }[];
+}
