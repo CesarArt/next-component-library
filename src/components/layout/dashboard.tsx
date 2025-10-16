@@ -21,19 +21,18 @@ export default function Dashboard() {
     }, [])
 
     const chartData = useMemo(() => {
-        const totalInteractions = stats?.stats.reduce((v, c) => v + c.count, 0)
-        const totalComponents = stats?.stats.length
-        const totalFavorites = stats?.myFavorites.length
-        const componentMoreInteraction = stats?.stats.sort((a,b) => a.count - a.count)[0]
-        const interactionsChart :  dataChart[] = stats?.stats.map( (st) => {
+        const totalInteractions = stats && stats.stats ? stats?.stats.reduce((v, c) => v + c.count, 0) : 0
+        const totalComponents = stats?.stats?.length ?? 0
+        const totalFavorites = stats && stats.stats ? stats?.myFavorites?.length : 0
+        const componentMoreInteraction = stats?.stats?.sort((a, b) => a.count - a.count)[0]
+        const interactionsChart: dataChart[] = stats?.stats?.map((st) => {
             const maxValue = Math.max(...stats?.stats.map((d) => d.count))
             const color = getColorGradientByPercentage(st.count, maxValue, colorByPercentageTop)
-            return { key: st._id, value: st.count, color:color }
-        })??[] 
+            return { key: st._id, value: st.count, color: color }
+        }) ?? []
 
-        const favoriteComponent = findMostFrequent(stats?.myFavorites ?? [], "component") 
+        const favoriteComponent = findMostFrequent(stats?.myFavorites ?? [], "component")
         const groupFavorites = groupFavoritesByComponent(stats?.myFavorites ?? [])
-        console.log("groupFavorites: ",groupFavorites)
 
         return {
             totalInteractions: totalInteractions ?? 0,
@@ -48,60 +47,63 @@ export default function Dashboard() {
     return (
         <section className="relative flex flex-col gap-2 h-full w-full p-4">
             <div className="space-y-1 px-4">
-                <h1 className="text-4xl font-bold">
+                <h1 className="title-text">
                     Dashboard
                 </h1>
-                <h2 className="text-xl text-muted">
+                <h2 className="subtitle-text">
                     Overview of the UI Component Library
                 </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-                <Card>
-                    <CardHeader>Total components with interactions</CardHeader>
+                <Card className="bg-card-bg-op1">
+                    <CardHeader className="text-white-force">Total components with interactions</CardHeader>
                     <CardBody>
-                        <p className="text-4xl">{chartData.totalComponents}</p>
+                        <p className="text-4xl text-white-force">{chartData.totalComponents}</p>
                     </CardBody>
                 </Card>
-                {chartData.componentMoreInteraction && 
-                <Card>
-                    <CardHeader>Most interacted component</CardHeader>
-                    <CardBody>
-                        <p className="text-4xl capitalize">{chartData.componentMoreInteraction._id}</p>
-                    </CardBody>
-                </Card>
+                {chartData.componentMoreInteraction &&
+                    <Card>
+                        <CardHeader>Most interacted component</CardHeader>
+                        <CardBody>
+                            <p className="text-4xl capitalize">{chartData.componentMoreInteraction._id}</p>
+                        </CardBody>
+                    </Card>
                 }
-
-                <Card>
-                    <CardHeader>Components with interactions</CardHeader>
+                {chartData.interactionsChart.length > 0 &&
+                    <Card>
+                        <CardHeader>Components with interactions</CardHeader>
+                        <CardBody>
+                            <BarChartBenchmark dataChart={chartData.interactionsChart} />
+                        </CardBody>
+                    </Card>
+                }
+                <Card className="bg-card-bg-op2">
+                    <CardHeader className="text-white-force">Total interactions</CardHeader>
                     <CardBody>
-                        <BarChartBenchmark dataChart={chartData.interactionsChart} />
+                        <p className="text-4xl text-white-force">{chartData.totalInteractions}</p>
                     </CardBody>
                 </Card>
-                <Card>
-                    <CardHeader>Total interactions</CardHeader>
+                <Card className="bg-card-bg-op3">
+                    <CardHeader className="text-white-force">Total Favorite Components</CardHeader>
                     <CardBody>
-                        <p className="text-4xl">{chartData.totalInteractions}</p>
+                        <p className="text-4xl text-white-force">{chartData.totalFavorites}</p>
                     </CardBody>
                 </Card>
-                <Card>
-                    <CardHeader>Total Favorite Components</CardHeader>
-                    <CardBody>
-                        <p className="text-4xl">{chartData.totalFavorites}</p>
-                    </CardBody>
-                </Card>
-                <Card>
-                    <CardHeader>Favorite Component</CardHeader>
-                    <CardBody>
-                        <p className="text-4xl capitalize">{chartData.favoriteComponent}</p>
-                    </CardBody>
-                </Card>
+                {chartData.favoriteComponent &&
+                    <Card>
+                        <CardHeader>Favorite Component</CardHeader>
+                        <CardBody>
+                            <p className="text-4xl capitalize">{chartData.favoriteComponent}</p>
+                        </CardBody>
+                    </Card>
+                }
                 {chartData.groupFavorites.length > 0 &&
-                <Card>
-                    <CardHeader>Favorite Components Variants</CardHeader>
-                    <CardBody>
-                        <TreemapChart dataChart={chartData.groupFavorites} />
-                    </CardBody>
-                </Card>
+                    <Card>
+                        <CardHeader>Favorite Components Variants</CardHeader>
+                        <CardBody>
+                            <TreemapChart dataChart={chartData.groupFavorites} />
+                        </CardBody>
+                    </Card>
                 }
             </div>
         </section>
